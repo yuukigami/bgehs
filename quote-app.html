@@ -18,6 +18,9 @@
             --border: #ddd;
             --bg: #fff;
             --bg-alt: #f8f9fa;
+            --intro-color: #5a9bd4;
+            --essential-color: #6b4c7a;
+            --plus-color: #2e7d32;
         }
 
         * {
@@ -35,7 +38,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -43,18 +46,47 @@
         header {
             background: var(--primary);
             color: white;
-            padding: 20px 0;
+            padding: 15px 0;
             margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 500;
         }
 
         header .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.9;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .header-btn:hover {
+            background: rgba(255,255,255,0.3);
         }
 
         .card {
@@ -87,6 +119,18 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row-3 {
+                grid-template-columns: 1fr;
+            }
         }
 
         label {
@@ -129,22 +173,6 @@
             box-shadow: 0 0 0 3px rgba(107, 76, 122, 0.1);
         }
 
-        input.error,
-        select.error {
-            border-color: var(--danger);
-        }
-
-        .error-message {
-            color: var(--danger);
-            font-size: 0.8rem;
-            margin-top: 4px;
-        }
-
-        .calculated {
-            background: var(--bg-alt);
-            color: var(--text-light);
-        }
-
         button {
             padding: 12px 24px;
             border: none;
@@ -185,10 +213,16 @@
             background: #218838;
         }
 
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+        }
+
         .btn-group {
             display: flex;
             gap: 12px;
             margin-top: 24px;
+            flex-wrap: wrap;
         }
 
         .progress-bar {
@@ -196,6 +230,9 @@
             justify-content: space-between;
             margin-bottom: 30px;
             position: relative;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .progress-bar::before {
@@ -245,7 +282,6 @@
             font-size: 0.75rem;
             color: var(--text-light);
             text-align: center;
-            max-width: 80px;
         }
 
         .progress-step.active .step-label {
@@ -259,258 +295,6 @@
 
         .screen.active {
             display: block;
-        }
-
-        .tier-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin: 20px 0;
-        }
-
-        @media (max-width: 768px) {
-            .tier-cards {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .tier-card {
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            padding: 20px;
-            cursor: pointer;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            position: relative;
-        }
-
-        .tier-card:hover {
-            border-color: var(--primary-light);
-        }
-
-        .tier-card.selected {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(107, 76, 122, 0.2);
-        }
-
-        .tier-card .tier-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-
-        .tier-card .tier-desc {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 12px;
-        }
-
-        .tier-card .tier-features {
-            font-size: 0.8rem;
-            list-style: none;
-        }
-
-        .tier-card .tier-features li {
-            padding: 4px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .tier-card .tier-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success);
-        }
-
-        .tier-card .tier-features li.excluded::before {
-            content: '—';
-            color: var(--text-light);
-        }
-
-        .tier-card input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-        }
-
-        .addon-list {
-            display: grid;
-            gap: 12px;
-        }
-
-        .addon-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px;
-            background: var(--bg-alt);
-            border-radius: 4px;
-        }
-
-        .addon-item input[type="checkbox"] {
-            margin-top: 4px;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-
-        .addon-item label {
-            cursor: pointer;
-            flex: 1;
-        }
-
-        .addon-item .addon-name {
-            font-weight: 500;
-        }
-
-        .addon-item .addon-desc {
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .addon-item.disabled {
-            opacity: 0.5;
-        }
-
-        .addon-item.disabled input,
-        .addon-item.disabled label {
-            cursor: not-allowed;
-        }
-
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-        }
-
-        .summary-table th,
-        .summary-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .summary-table th {
-            background: var(--bg-alt);
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: var(--text-light);
-        }
-
-        .summary-table td.qty {
-            text-align: center;
-            width: 80px;
-        }
-
-        .summary-table td.price {
-            text-align: right;
-            width: 120px;
-        }
-
-        .summary-table tr.subtotal td {
-            font-weight: 600;
-            background: var(--bg-alt);
-        }
-
-        .summary-table tr.total td {
-            font-weight: 700;
-            font-size: 1.1rem;
-            background: var(--secondary);
-            color: var(--primary);
-        }
-
-        .summary-table .category-header td {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .summary-section {
-            margin: 24px 0;
-            padding: 16px;
-            background: var(--bg-alt);
-            border-radius: 4px;
-        }
-
-        .summary-section h4 {
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        .summary-section p {
-            margin: 4px 0;
-            font-size: 0.9rem;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .status-badge.ready {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .status-badge.warning {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .status-badge.error {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .export-area {
-            margin-top: 20px;
-        }
-
-        .export-area textarea {
-            width: 100%;
-            height: 400px;
-            font-family: monospace;
-            font-size: 0.85rem;
-            padding: 16px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            resize: vertical;
-        }
-
-        .copy-feedback {
-            display: none;
-            color: var(--success);
-            font-weight: 500;
-            margin-left: 12px;
-        }
-
-        .copy-feedback.show {
-            display: inline;
-        }
-
-        .info-box {
-            background: #e7f3ff;
-            border-left: 4px solid #0066cc;
-            padding: 12px 16px;
-            margin: 16px 0;
-            font-size: 0.9rem;
-        }
-
-        .warning-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 12px 16px;
-            margin: 16px 0;
-            font-size: 0.9rem;
-        }
-
-        .hidden {
-            display: none !important;
         }
 
         .input-with-unit {
@@ -535,6 +319,362 @@
             margin-top: 4px;
         }
 
+        /* Tier Comparison Grid */
+        .tier-comparison {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 900px) {
+            .tier-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tier-column {
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tier-column.intro {
+            border-color: var(--intro-color);
+        }
+
+        .tier-column.essential {
+            border-color: var(--essential-color);
+        }
+
+        .tier-column.plus {
+            border-color: var(--plus-color);
+        }
+
+        .tier-header {
+            padding: 16px;
+            color: white;
+            text-align: center;
+        }
+
+        .tier-column.intro .tier-header {
+            background: var(--intro-color);
+        }
+
+        .tier-column.essential .tier-header {
+            background: var(--essential-color);
+        }
+
+        .tier-column.plus .tier-header {
+            background: var(--plus-color);
+        }
+
+        .tier-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .tier-header .tier-total {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .tier-header .tier-total.not-configured {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .tier-body {
+            padding: 16px;
+            background: white;
+        }
+
+        .tier-items {
+            list-style: none;
+        }
+
+        .tier-items li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--bg-alt);
+            font-size: 0.85rem;
+        }
+
+        .tier-items li:last-child {
+            border-bottom: none;
+        }
+
+        .tier-items .item-name {
+            flex: 1;
+        }
+
+        .tier-items .item-qty {
+            color: var(--text-light);
+            margin: 0 12px;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .tier-items .item-price {
+            font-weight: 500;
+            min-width: 70px;
+            text-align: right;
+        }
+
+        .tier-items .item-excluded {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .tier-section-header {
+            font-weight: 600;
+            color: var(--text);
+            padding: 12px 0 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border-bottom: none !important;
+        }
+
+        .tier-footer {
+            padding: 16px;
+            background: var(--bg-alt);
+            text-align: center;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 100%;
+            margin: 40px auto;
+            max-height: none;
+        }
+
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 0;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 24px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        /* Pricing Config */
+        .pricing-section {
+            margin-bottom: 24px;
+        }
+
+        .pricing-section h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 120px;
+            gap: 8px 16px;
+            align-items: center;
+        }
+
+        .pricing-grid label {
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .pricing-grid input {
+            text-align: right;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Summary section */
+        .summary-section {
+            margin: 16px 0;
+            padding: 16px;
+            background: var(--bg-alt);
+            border-radius: 4px;
+        }
+
+        .summary-section h4 {
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .summary-section p {
+            margin: 4px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Export */
+        .export-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .export-tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-light);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .export-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .export-content {
+            display: none;
+        }
+
+        .export-content.active {
+            display: block;
+        }
+
+        .export-area textarea {
+            width: 100%;
+            height: 400px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        .copy-feedback {
+            display: none;
+            color: var(--success);
+            font-weight: 500;
+            margin-left: 12px;
+        }
+
+        .copy-feedback.show {
+            display: inline;
+        }
+
+        /* Saved quotes */
+        .saved-quotes-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .saved-quote-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .saved-quote-item:hover {
+            background: var(--bg-alt);
+        }
+
+        .saved-quote-info {
+            flex: 1;
+        }
+
+        .saved-quote-info strong {
+            display: block;
+        }
+
+        .saved-quote-info small {
+            color: var(--text-light);
+        }
+
+        .saved-quote-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
         footer {
             text-align: center;
             padding: 20px;
@@ -546,8 +686,16 @@
 <body>
     <header>
         <div class="container">
-            <h1>BG-EHS Quote Generator</h1>
-            <p class="subtitle">BioGeometry Environmental Home Solutions - Associate Practitioner</p>
+            <div class="header-content">
+                <div>
+                    <h1>BG-EHS Quote Generator</h1>
+                    <p class="subtitle">Internal Tool - Associate Practitioner</p>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" onclick="openSavedQuotes()">Saved Quotes</button>
+                    <button class="header-btn" onclick="openPricingConfig()">Pricing Config</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -563,22 +711,10 @@
             </div>
             <div class="progress-step" data-step="3">
                 <span class="step-number">3</span>
-                <span class="step-label">Tier</span>
+                <span class="step-label">Compare</span>
             </div>
             <div class="progress-step" data-step="4">
                 <span class="step-number">4</span>
-                <span class="step-label">Details</span>
-            </div>
-            <div class="progress-step" data-step="5">
-                <span class="step-number">5</span>
-                <span class="step-label">Add-ons</span>
-            </div>
-            <div class="progress-step" data-step="6">
-                <span class="step-number">6</span>
-                <span class="step-label">Review</span>
-            </div>
-            <div class="progress-step" data-step="7">
-                <span class="step-number">7</span>
                 <span class="step-label">Export</span>
             </div>
         </div>
@@ -612,18 +748,19 @@
                     <input type="text" id="propertyAddress" required>
                 </div>
                 <div class="btn-group">
-                    <button class="btn-primary" onclick="nextScreen(1)">Continue</button>
+                    <button class="btn-primary" onclick="nextScreen(1)">Continue to Property Details</button>
                 </div>
             </div>
         </div>
 
-        <!-- Screen 2: Property Basics -->
+        <!-- Screen 2: Property Details (All-inclusive for all tiers) -->
         <div class="screen" id="screen-2">
             <div class="card">
                 <h2>Property Details</h2>
+                <p style="color: var(--text-light); margin-bottom: 20px;">Enter all property details. Quotes will be generated for all three tiers.</p>
 
                 <h3>Size & Layout</h3>
-                <div class="form-row">
+                <div class="form-row-3">
                     <div class="form-group">
                         <label>Floor Area <span class="required">*</span></label>
                         <div class="input-with-unit">
@@ -636,45 +773,46 @@
                         <label>Number of Floors <span class="required">*</span></label>
                         <input type="number" id="numFloors" min="1" value="1" required>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group">
                         <label>Number of Bedrooms <span class="required">*</span></label>
                         <input type="number" id="numBedrooms" min="0" required oninput="updateDefaults()">
                     </div>
-                    <div class="form-group">
-                        <label>Number of Bathrooms</label>
-                        <input type="number" id="numBathrooms" min="0" value="1">
-                    </div>
                 </div>
 
                 <h3>Doors</h3>
-                <div class="form-row">
+                <div class="form-row-3">
                     <div class="form-group">
-                        <label>External Doors <span class="required">*</span> <span class="hint">(Entry/exit doors)</span></label>
+                        <label>External Doors <span class="required">*</span> <span class="hint">(Entry/exit)</span></label>
                         <input type="number" id="numExternalDoors" min="1" value="1" required>
                     </div>
                     <div class="form-group">
                         <label>Bedroom Doors <span class="required">*</span></label>
                         <input type="number" id="numBedroomDoors" min="0" required>
-                        <div class="auto-calculated">Usually equals number of bedrooms</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Interior Doors <span class="hint">(Bath, closet, etc.)</span></label>
+                        <input type="number" id="numInteriorDoors" min="0" value="0">
                     </div>
                 </div>
 
                 <h3>Systems</h3>
-                <div class="form-row">
+                <div class="form-row-3">
                     <div class="form-group">
-                        <label>Electrical Panels <span class="required">*</span> <span class="hint">(Main + sub panels)</span></label>
+                        <label>Electrical Panels <span class="required">*</span></label>
                         <input type="number" id="numElectricalPanels" min="1" value="1" required>
                     </div>
                     <div class="form-group">
-                        <label>Water Supply Points <span class="required">*</span> <span class="hint">(Main entry points)</span></label>
+                        <label>Water Supply Points <span class="required">*</span></label>
                         <input type="number" id="numWaterSupplyPoints" min="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WiFi Routers</label>
+                        <input type="number" id="numWifiRouters" min="0" value="1">
                     </div>
                 </div>
 
-                <h3>Bedrooms - Electrical & Features</h3>
-                <div class="form-row">
+                <h3>Bedrooms</h3>
+                <div class="form-row-3">
                     <div class="form-group">
                         <label>Bedside Outlets <span class="required">*</span></label>
                         <input type="number" id="numBedsideOutlets" min="0" required>
@@ -684,326 +822,165 @@
                         <label>Bedroom Windows <span class="required">*</span></label>
                         <input type="number" id="numBedroomWindows" min="0" required>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group">
                         <label>Bedroom Mirrors</label>
                         <input type="number" id="numBedroomMirrors" min="0" value="0">
                     </div>
                 </div>
 
+                <h3>Living Spaces <span class="hint">(For Essential Plus add-ons)</span></h3>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Number of Living Spaces</label>
+                        <input type="number" id="numLivingSpaces" min="0" value="1">
+                        <div class="auto-calculated">Living room, den, office, etc.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Living Area Windows</label>
+                        <input type="number" id="numLivingWindows" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Living Area Mirrors</label>
+                        <input type="number" id="numLivingMirrors" min="0" value="0">
+                    </div>
+                </div>
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Living Area Outlets</label>
+                        <input type="number" id="numLivingOutlets" min="0" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label>TVs / Large Appliances</label>
+                        <input type="number" id="numTVsAppliances" min="0" value="0">
+                    </div>
+                </div>
+
                 <div class="btn-group">
                     <button class="btn-secondary" onclick="prevScreen(2)">Back</button>
-                    <button class="btn-primary" onclick="nextScreen(2)">Continue</button>
+                    <button class="btn-primary" onclick="nextScreen(2)">Generate All Quotes</button>
                 </div>
             </div>
         </div>
 
-        <!-- Screen 3: Tier Selection -->
+        <!-- Screen 3: Tier Comparison -->
         <div class="screen" id="screen-3">
             <div class="card">
-                <h2>Select Service Tier</h2>
-                <p style="margin-bottom: 20px; color: var(--text-light);">Choose the level of BioGeometry protection for this property.</p>
+                <h2>Quote Comparison</h2>
 
-                <div class="tier-cards">
-                    <div class="tier-card" onclick="selectTier('intro')">
-                        <input type="radio" name="tier" value="intro" id="tier-intro">
-                        <div class="tier-name">Intro</div>
-                        <div class="tier-desc">Entry-level protection for bedrooms and critical systems</div>
-                        <ul class="tier-features">
-                            <li>BG28 Ring (1 per 100m²/floor)</li>
-                            <li>External + Bedroom Doors</li>
-                            <li class="excluded">No Space Harmonizer</li>
-                            <li class="excluded">No Earth Gridlines</li>
-                            <li>Water Supply Solution</li>
-                            <li>Electrical Panels</li>
-                            <li>Bedside Outlets</li>
-                            <li>Bedroom Windows</li>
-                            <li>Bedroom Mirrors</li>
-                        </ul>
+                <div class="summary-section">
+                    <h4>Property Summary</h4>
+                    <p><strong>Client:</strong> <span id="summary-client"></span></p>
+                    <p><strong>Property:</strong> <span id="summary-property"></span></p>
+                    <p><strong>Size:</strong> <span id="summary-size"></span></p>
+                </div>
+
+                <div id="pricing-warning" class="warning-box">
+                    <strong>Prices Not Configured</strong><br>
+                    Click "Pricing Config" in the header to set your prices. Quantities are shown below.
+                </div>
+
+                <div class="tier-comparison" id="tier-comparison">
+                    <!-- Intro Column -->
+                    <div class="tier-column intro">
+                        <div class="tier-header">
+                            <h3>Intro</h3>
+                            <div class="tier-total" id="intro-total">—</div>
+                        </div>
+                        <div class="tier-body">
+                            <ul class="tier-items" id="intro-items"></ul>
+                        </div>
+                        <div class="tier-footer">
+                            <button class="btn-small btn-secondary" onclick="exportTier('intro')">Export Intro</button>
+                        </div>
                     </div>
 
-                    <div class="tier-card" onclick="selectTier('essential')">
-                        <input type="radio" name="tier" value="essential" id="tier-essential">
-                        <div class="tier-name">Essential</div>
-                        <div class="tier-desc">Complete protection with space harmonization</div>
-                        <ul class="tier-features">
-                            <li>BG28 Ring (1 per 50m²/floor)</li>
-                            <li>ALL Doors</li>
-                            <li>Space Harmonizer</li>
-                            <li>Cubic Disc BG3 Center</li>
-                            <li>Earth Gridlines (Bedrooms)</li>
-                            <li>Water Supply Solution</li>
-                            <li>Electrical Panels</li>
-                            <li>Bedside Outlets</li>
-                            <li>Bedroom Windows</li>
-                            <li>L-Wifi (add-on)</li>
-                        </ul>
+                    <!-- Essential Column -->
+                    <div class="tier-column essential">
+                        <div class="tier-header">
+                            <h3>Essential</h3>
+                            <div class="tier-total" id="essential-total">—</div>
+                        </div>
+                        <div class="tier-body">
+                            <ul class="tier-items" id="essential-items"></ul>
+                        </div>
+                        <div class="tier-footer">
+                            <button class="btn-small btn-secondary" onclick="exportTier('essential')">Export Essential</button>
+                        </div>
                     </div>
 
-                    <div class="tier-card" onclick="selectTier('essential-plus')">
-                        <input type="radio" name="tier" value="essential-plus" id="tier-essential-plus">
-                        <div class="tier-name">Essential Plus</div>
-                        <div class="tier-desc">Comprehensive with living area options</div>
-                        <ul class="tier-features">
-                            <li>Everything in Essential</li>
-                            <li>+ Living Area Add-ons:</li>
-                            <li style="padding-left: 30px;">Earth Gridlines (Living)</li>
-                            <li style="padding-left: 30px;">L66 All Outlets</li>
-                            <li style="padding-left: 30px;">Living Windows</li>
-                            <li style="padding-left: 30px;">Living Mirrors</li>
-                            <li style="padding-left: 30px;">TV/Appliance Discs</li>
-                        </ul>
+                    <!-- Essential Plus Column -->
+                    <div class="tier-column plus">
+                        <div class="tier-header">
+                            <h3>Essential Plus</h3>
+                            <div class="tier-total" id="plus-total">—</div>
+                        </div>
+                        <div class="tier-body">
+                            <ul class="tier-items" id="plus-items"></ul>
+                        </div>
+                        <div class="tier-footer">
+                            <button class="btn-small btn-secondary" onclick="exportTier('essential-plus')">Export Essential+</button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="btn-group">
-                    <button class="btn-secondary" onclick="prevScreen(3)">Back</button>
-                    <button class="btn-primary" onclick="nextScreen(3)">Continue</button>
+                    <button class="btn-secondary" onclick="prevScreen(3)">Back to Edit</button>
+                    <button class="btn-primary" onclick="nextScreen(3)">Export Options</button>
+                    <button class="btn-success" onclick="saveQuote()">Save Quote</button>
                 </div>
             </div>
         </div>
 
-        <!-- Screen 4: Tier-Specific Details -->
+        <!-- Screen 4: Export -->
         <div class="screen" id="screen-4">
             <div class="card">
-                <h2>Additional Details</h2>
-                <div id="tier-specific-intro" class="hidden">
-                    <div class="info-box">
-                        <strong>Intro Tier Selected</strong><br>
-                        No additional details required. Proceed to review.
+                <h2>Export Proposals</h2>
+
+                <div class="export-tabs">
+                    <button class="export-tab active" onclick="switchExportTab('comparison')">All Tiers Comparison</button>
+                    <button class="export-tab" onclick="switchExportTab('intro')">Intro Only</button>
+                    <button class="export-tab" onclick="switchExportTab('essential')">Essential Only</button>
+                    <button class="export-tab" onclick="switchExportTab('plus')">Essential Plus Only</button>
+                </div>
+
+                <div class="export-content active" id="export-comparison">
+                    <div class="export-area">
+                        <textarea id="proposal-comparison" readonly></textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-success" onclick="copyToClipboard('proposal-comparison')">Copy to Clipboard</button>
+                        <span class="copy-feedback" id="copy-feedback-comparison">Copied!</span>
                     </div>
                 </div>
 
-                <div id="tier-specific-essential" class="hidden">
-                    <h3>Door Details</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Interior Doors <span class="required">*</span> <span class="hint">(Bathroom, closet, etc.)</span></label>
-                            <input type="number" id="numInteriorDoors" min="0" value="0">
-                        </div>
+                <div class="export-content" id="export-intro">
+                    <div class="export-area">
+                        <textarea id="proposal-intro" readonly></textarea>
                     </div>
-
-                    <h3>Optional: WiFi Details</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>WiFi Routers/Access Points</label>
-                            <input type="number" id="numWifiRouters" min="0" value="0">
-                            <div class="auto-calculated">For L-Wifi add-on (if selected)</div>
-                        </div>
+                    <div class="btn-group">
+                        <button class="btn-success" onclick="copyToClipboard('proposal-intro')">Copy to Clipboard</button>
+                        <span class="copy-feedback" id="copy-feedback-intro">Copied!</span>
                     </div>
                 </div>
 
-                <div id="tier-specific-essential-plus" class="hidden">
-                    <h3>Door Details</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Interior Doors <span class="required">*</span> <span class="hint">(Bathroom, closet, etc.)</span></label>
-                            <input type="number" id="numInteriorDoorsPlus" min="0" value="0">
-                        </div>
+                <div class="export-content" id="export-essential">
+                    <div class="export-area">
+                        <textarea id="proposal-essential" readonly></textarea>
                     </div>
-
-                    <h3>Living Spaces</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Number of Living Spaces <span class="required">*</span> <span class="hint">(Living room, den, office, etc.)</span></label>
-                            <input type="number" id="numLivingSpaces" min="0" value="1">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Living Area Windows</label>
-                            <input type="number" id="numLivingWindows" min="0" value="0">
-                        </div>
-                        <div class="form-group">
-                            <label>Living Area Mirrors</label>
-                            <input type="number" id="numLivingMirrors" min="0" value="0">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Living Area Outlets</label>
-                            <input type="number" id="numLivingOutlets" min="0" value="0">
-                        </div>
-                        <div class="form-group">
-                            <label>TVs / Large Appliances</label>
-                            <input type="number" id="numTVsAppliances" min="0" value="0">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>WiFi Routers/Access Points</label>
-                            <input type="number" id="numWifiRoutersPlus" min="0" value="0">
-                        </div>
+                    <div class="btn-group">
+                        <button class="btn-success" onclick="copyToClipboard('proposal-essential')">Copy to Clipboard</button>
+                        <span class="copy-feedback" id="copy-feedback-essential">Copied!</span>
                     </div>
                 </div>
 
-                <div class="btn-group">
-                    <button class="btn-secondary" onclick="prevScreen(4)">Back</button>
-                    <button class="btn-primary" onclick="nextScreen(4)">Continue</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Screen 5: Add-ons -->
-        <div class="screen" id="screen-5">
-            <div class="card">
-                <h2>Optional Add-ons</h2>
-                <p style="margin-bottom: 20px; color: var(--text-light);">Select any additional solutions for this project.</p>
-
-                <div id="addons-intro" class="hidden">
-                    <div class="info-box">
-                        <strong>Intro Tier</strong><br>
-                        No additional add-ons available for this tier. Upgrade to Essential or Essential Plus for more options.
+                <div class="export-content" id="export-plus">
+                    <div class="export-area">
+                        <textarea id="proposal-plus" readonly></textarea>
                     </div>
-                </div>
-
-                <div id="addons-essential" class="hidden">
-                    <div class="addon-list">
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-wifi" onchange="updateAddonState()">
-                            <label for="addon-wifi">
-                                <div class="addon-name">L-Wifi Solution</div>
-                                <div class="addon-desc">Protection for WiFi routers and access points</div>
-                            </label>
-                        </div>
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-bedroom-mirrors" onchange="updateAddonState()">
-                            <label for="addon-bedroom-mirrors">
-                                <div class="addon-name">Bedroom Mirrors</div>
-                                <div class="addon-desc">L90 Solution for all bedroom mirrors</div>
-                            </label>
-                        </div>
+                    <div class="btn-group">
+                        <button class="btn-success" onclick="copyToClipboard('proposal-plus')">Copy to Clipboard</button>
+                        <span class="copy-feedback" id="copy-feedback-plus">Copied!</span>
                     </div>
-                </div>
-
-                <div id="addons-essential-plus" class="hidden">
-                    <h3>Standard Add-ons</h3>
-                    <div class="addon-list">
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-wifi-plus" onchange="updateAddonState()">
-                            <label for="addon-wifi-plus">
-                                <div class="addon-name">L-Wifi Solution</div>
-                                <div class="addon-desc">Protection for WiFi routers and access points</div>
-                            </label>
-                        </div>
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-bedroom-mirrors-plus" onchange="updateAddonState()">
-                            <label for="addon-bedroom-mirrors-plus">
-                                <div class="addon-name">Bedroom Mirrors</div>
-                                <div class="addon-desc">L90 Solution for all bedroom mirrors</div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <h3>Essential Plus Exclusive Add-ons</h3>
-                    <div class="addon-list">
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-earth-gridlines-living" onchange="updateAddonState()">
-                            <label for="addon-earth-gridlines-living">
-                                <div class="addon-name">Earth Gridlines - Living Spaces</div>
-                                <div class="addon-desc">H/B and Curry Earth Gridlines Discs for all living areas</div>
-                            </label>
-                        </div>
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-l66-living" onchange="updateAddonState()">
-                            <label for="addon-l66-living">
-                                <div class="addon-name">L66 All Outlets (Living Areas)</div>
-                                <div class="addon-desc">Protection for all electrical outlets in living areas</div>
-                            </label>
-                        </div>
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-cubic-disc-tv" onchange="updateAddonState()">
-                            <label for="addon-cubic-disc-tv">
-                                <div class="addon-name">Cubic Disc - TVs & Large Appliances</div>
-                                <div class="addon-desc">Protection for televisions and large appliances</div>
-                            </label>
-                        </div>
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-living-windows" onchange="updateAddonState()">
-                            <label for="addon-living-windows">
-                                <div class="addon-name">Living Area Windows</div>
-                                <div class="addon-desc">L Solution for all windows in living areas</div>
-                            </label>
-                        </div>
-                        <div class="addon-item">
-                            <input type="checkbox" id="addon-living-mirrors" onchange="updateAddonState()">
-                            <label for="addon-living-mirrors">
-                                <div class="addon-name">Living Area Mirrors</div>
-                                <div class="addon-desc">L90 Solution for all mirrors in living areas</div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="btn-group">
-                    <button class="btn-secondary" onclick="prevScreen(5)">Back</button>
-                    <button class="btn-primary" onclick="nextScreen(5)">Review Quote</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Screen 6: Review -->
-        <div class="screen" id="screen-6">
-            <div class="card">
-                <h2>Quote Review</h2>
-
-                <div id="quote-status"></div>
-
-                <div class="summary-section">
-                    <h4>Client & Property</h4>
-                    <p><strong>Client:</strong> <span id="review-client-name"></span></p>
-                    <p><strong>Email:</strong> <span id="review-client-email"></span></p>
-                    <p><strong>Property:</strong> <span id="review-property"></span></p>
-                    <p><strong>Size:</strong> <span id="review-size"></span></p>
-                </div>
-
-                <div class="summary-section">
-                    <h4>Selected Tier: <span id="review-tier"></span></h4>
-                    <p id="review-tier-desc"></p>
-                </div>
-
-                <h3>Line Items</h3>
-                <table class="summary-table" id="line-items-table">
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th class="qty">Qty</th>
-                            <th class="price">Price</th>
-                        </tr>
-                    </thead>
-                    <tbody id="line-items-body">
-                    </tbody>
-                </table>
-
-                <div class="warning-box">
-                    <strong>Prices Not Yet Configured</strong><br>
-                    This quote shows quantities only. Configure prices in the pricing settings to display totals.
-                </div>
-
-                <div class="btn-group">
-                    <button class="btn-secondary" onclick="prevScreen(6)">Back</button>
-                    <button class="btn-primary" onclick="nextScreen(6)">Generate Proposal</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Screen 7: Export -->
-        <div class="screen" id="screen-7">
-            <div class="card">
-                <h2>Export Proposal</h2>
-
-                <div class="export-area">
-                    <label>Proposal Text (Copy for Email)</label>
-                    <textarea id="proposal-text" readonly></textarea>
-                </div>
-
-                <div class="btn-group">
-                    <button class="btn-secondary" onclick="prevScreen(7)">Back</button>
-                    <button class="btn-success" onclick="copyToClipboard()">
-                        Copy to Clipboard
-                    </button>
-                    <span class="copy-feedback" id="copy-feedback">Copied!</span>
                 </div>
 
                 <div class="info-box" style="margin-top: 20px;">
@@ -1011,69 +988,222 @@
                 </div>
 
                 <div class="btn-group" style="margin-top: 30px;">
+                    <button class="btn-secondary" onclick="prevScreen(4)">Back</button>
                     <button class="btn-primary" onclick="startNewQuote()">Start New Quote</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Pricing Configuration Modal -->
+    <div class="modal-overlay" id="pricing-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Pricing Configuration</h2>
+                <button class="modal-close" onclick="closePricingConfig()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="info-box">
+                    Prices are saved in your browser and will persist between sessions.
+                </div>
+
+                <div class="pricing-section">
+                    <h4>BG28 Ring Solutions</h4>
+                    <div class="pricing-grid">
+                        <label>BG28 Ring Pair (per pair)</label>
+                        <input type="number" id="price-bg28-ring" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h4>Doorway Solutions</h4>
+                    <div class="pricing-grid">
+                        <label>Doorway Disc + Strip (per door)</label>
+                        <input type="number" id="price-doorway-disc" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h4>Space Harmonization (Essential+)</h4>
+                    <div class="pricing-grid">
+                        <label>Space Harmonizer (per unit)</label>
+                        <input type="number" id="price-space-harmonizer" min="0" step="0.01" placeholder="0.00">
+                        <label>Cubic Disc BG3 Center (per unit)</label>
+                        <input type="number" id="price-cubic-disc-center" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h4>Earth Gridlines (Essential+)</h4>
+                    <div class="pricing-grid">
+                        <label>Earth Gridlines Disc (per disc)</label>
+                        <input type="number" id="price-earth-grid" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h4>Systems</h4>
+                    <div class="pricing-grid">
+                        <label>Water Supply Strip #11 (per unit)</label>
+                        <input type="number" id="price-water-strip" min="0" step="0.01" placeholder="0.00">
+                        <label>Electrical Panel Kit (per panel)</label>
+                        <input type="number" id="price-elec-panel" min="0" step="0.01" placeholder="0.00">
+                        <label>L-Wifi Solution (per router)</label>
+                        <input type="number" id="price-l-wifi" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h4>Outlets</h4>
+                    <div class="pricing-grid">
+                        <label>L66 Solution (per outlet)</label>
+                        <input type="number" id="price-l66" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h4>Windows & Mirrors</h4>
+                    <div class="pricing-grid">
+                        <label>L Solution - Window (per window)</label>
+                        <input type="number" id="price-l-window" min="0" step="0.01" placeholder="0.00">
+                        <label>L90 Solution - Mirror (per mirror)</label>
+                        <input type="number" id="price-l90-mirror" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h4>TV & Appliances (Essential Plus)</h4>
+                    <div class="pricing-grid">
+                        <label>Cubic Disc TV/Appliance (per unit)</label>
+                        <input type="number" id="price-cubic-disc-tv" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="pricing-section">
+                    <h4>Service Fees (Optional)</h4>
+                    <div class="pricing-grid">
+                        <label>Consultation/Assessment Fee</label>
+                        <input type="number" id="price-consultation" min="0" step="0.01" placeholder="0.00">
+                        <label>Installation Fee (flat)</label>
+                        <input type="number" id="price-installation" min="0" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="resetPricing()">Reset to Zero</button>
+                <button class="btn-primary" onclick="savePricing()">Save Prices</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Saved Quotes Modal -->
+    <div class="modal-overlay" id="saved-quotes-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Saved Quotes</h2>
+                <button class="modal-close" onclick="closeSavedQuotes()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="saved-quotes-list" class="saved-quotes-list">
+                    <p class="hidden" id="no-saved-quotes">No saved quotes yet.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeSavedQuotes()">Close</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
-            BG-EHS Quote Generator MVP | Offline Application | Tiers: Intro, Essential, Essential Plus
+            BG-EHS Quote Generator V1 | Internal Tool | Tiers: Intro, Essential, Essential Plus
         </div>
     </footer>
 
     <script>
-        // Application State
+        // ============================================
+        // APPLICATION STATE
+        // ============================================
         let currentScreen = 1;
-        let selectedTier = null;
         let quoteData = {
             client: {},
             property: {},
-            tier: null,
-            addons: [],
-            lineItems: [],
-            calculated: {}
+            quotes: {
+                intro: { items: [], total: 0 },
+                essential: { items: [], total: 0 },
+                'essential-plus': { items: [], total: 0 }
+            }
         };
 
-        // Tier Definitions
-        const tierDefinitions = {
+        // Default pricing (all zeros until configured)
+        let pricing = {
+            'bg28-ring': 0,
+            'doorway-disc': 0,
+            'space-harmonizer': 0,
+            'cubic-disc-center': 0,
+            'earth-grid': 0,
+            'water-strip': 0,
+            'elec-panel': 0,
+            'l-wifi': 0,
+            'l66': 0,
+            'l-window': 0,
+            'l90-mirror': 0,
+            'cubic-disc-tv': 0,
+            'consultation': 0,
+            'installation': 0
+        };
+
+        // ============================================
+        // TIER DEFINITIONS
+        // ============================================
+        const tierConfig = {
             'intro': {
                 name: 'Intro',
-                description: 'Entry-level protection focused on bedrooms and critical systems',
-                bg28Density: 100, // sqm per pair
+                bg28Density: 100,
                 doorCoverage: 'external-bedroom',
                 includesSpaceHarmonizer: false,
                 includesCubicDiscCenter: false,
                 includesEarthGridlines: false,
                 includesBedroomMirrors: true,
-                availableAddons: []
+                includesLWifi: false,
+                includesLivingAddons: false
             },
             'essential': {
                 name: 'Essential',
-                description: 'Complete protection with space harmonization and earth gridlines for bedrooms',
                 bg28Density: 50,
                 doorCoverage: 'all',
                 includesSpaceHarmonizer: true,
                 includesCubicDiscCenter: true,
                 includesEarthGridlines: true,
-                includesBedroomMirrors: false, // addon
-                availableAddons: ['wifi', 'bedroom-mirrors']
+                includesBedroomMirrors: true,
+                includesLWifi: true,
+                includesLivingAddons: false
             },
             'essential-plus': {
                 name: 'Essential Plus',
-                description: 'Comprehensive coverage with living area add-on options',
                 bg28Density: 50,
                 doorCoverage: 'all',
                 includesSpaceHarmonizer: true,
                 includesCubicDiscCenter: true,
                 includesEarthGridlines: true,
-                includesBedroomMirrors: false, // addon
-                availableAddons: ['wifi', 'bedroom-mirrors', 'earth-gridlines-living', 'l66-living', 'cubic-disc-tv', 'living-windows', 'living-mirrors']
+                includesBedroomMirrors: true,
+                includesLWifi: true,
+                includesLivingAddons: true
             }
         };
 
-        // Navigation Functions
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPricing();
+            document.getElementById('projectDate').valueAsDate = new Date();
+            updateProgress();
+        });
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
         function updateProgress() {
             document.querySelectorAll('.progress-step').forEach((step, index) => {
                 const stepNum = index + 1;
@@ -1096,22 +1226,14 @@
 
         function nextScreen(from) {
             if (!validateScreen(from)) return;
-
             collectScreenData(from);
 
-            // Handle tier-specific screen visibility
+            if (from === 2) {
+                calculateAllTiers();
+                renderComparison();
+            }
             if (from === 3) {
-                updateTierSpecificVisibility();
-            }
-            if (from === 4) {
-                updateAddonsVisibility();
-            }
-            if (from === 5) {
-                calculateQuote();
-                renderReview();
-            }
-            if (from === 6) {
-                generateProposal();
+                generateAllProposals();
             }
 
             showScreen(from + 1);
@@ -1121,7 +1243,9 @@
             showScreen(from - 1);
         }
 
-        // Validation
+        // ============================================
+        // VALIDATION
+        // ============================================
         function validateScreen(screen) {
             let valid = true;
             const errors = [];
@@ -1156,21 +1280,15 @@
                 }
             }
 
-            if (screen === 3) {
-                if (!selectedTier) {
-                    errors.push('Please select a service tier');
-                    valid = false;
-                }
-            }
-
             if (!valid) {
                 alert('Please fix the following:\n\n' + errors.join('\n'));
             }
-
             return valid;
         }
 
-        // Data Collection
+        // ============================================
+        // DATA COLLECTION
+        // ============================================
         function collectScreenData(screen) {
             if (screen === 1) {
                 quoteData.client = {
@@ -1184,100 +1302,733 @@
 
             if (screen === 2) {
                 quoteData.property = {
-                    ...quoteData.property,
+                    address: quoteData.property.address,
                     floorAreaSqm: parseFloat(document.getElementById('floorAreaSqm').value),
                     floorAreaSqft: parseFloat(document.getElementById('floorAreaSqm').value) * 10.764,
                     numFloors: parseInt(document.getElementById('numFloors').value),
                     numBedrooms: parseInt(document.getElementById('numBedrooms').value),
-                    numBathrooms: parseInt(document.getElementById('numBathrooms').value) || 0,
                     numExternalDoors: parseInt(document.getElementById('numExternalDoors').value),
                     numBedroomDoors: parseInt(document.getElementById('numBedroomDoors').value),
+                    numInteriorDoors: parseInt(document.getElementById('numInteriorDoors').value) || 0,
                     numElectricalPanels: parseInt(document.getElementById('numElectricalPanels').value),
                     numWaterSupplyPoints: parseInt(document.getElementById('numWaterSupplyPoints').value),
+                    numWifiRouters: parseInt(document.getElementById('numWifiRouters').value) || 0,
                     numBedsideOutlets: parseInt(document.getElementById('numBedsideOutlets').value),
                     numBedroomWindows: parseInt(document.getElementById('numBedroomWindows').value),
-                    numBedroomMirrors: parseInt(document.getElementById('numBedroomMirrors').value) || 0
+                    numBedroomMirrors: parseInt(document.getElementById('numBedroomMirrors').value) || 0,
+                    numLivingSpaces: parseInt(document.getElementById('numLivingSpaces').value) || 0,
+                    numLivingWindows: parseInt(document.getElementById('numLivingWindows').value) || 0,
+                    numLivingMirrors: parseInt(document.getElementById('numLivingMirrors').value) || 0,
+                    numLivingOutlets: parseInt(document.getElementById('numLivingOutlets').value) || 0,
+                    numTVsAppliances: parseInt(document.getElementById('numTVsAppliances').value) || 0
                 };
             }
+        }
 
-            if (screen === 3) {
-                quoteData.tier = selectedTier;
+        // ============================================
+        // CALCULATION ENGINE
+        // ============================================
+        function calculateAllTiers() {
+            ['intro', 'essential', 'essential-plus'].forEach(tierKey => {
+                calculateTier(tierKey);
+            });
+        }
+
+        function calculateTier(tierKey) {
+            const tier = tierConfig[tierKey];
+            const prop = quoteData.property;
+            const items = [];
+            let total = 0;
+
+            // BG28 Ring
+            const pairsPerFloor = Math.ceil(prop.floorAreaSqm / tier.bg28Density);
+            const bg28Qty = pairsPerFloor * prop.numFloors;
+            const bg28Price = bg28Qty * pricing['bg28-ring'];
+            items.push({
+                name: 'BG28 Ring Pair',
+                description: `1 per ${tier.bg28Density}m²/floor`,
+                qty: bg28Qty,
+                unit: 'pairs',
+                unitPrice: pricing['bg28-ring'],
+                total: bg28Price
+            });
+            total += bg28Price;
+
+            // Doorway Disc
+            let doorQty = prop.numExternalDoors + prop.numBedroomDoors;
+            if (tier.doorCoverage === 'all') {
+                doorQty += prop.numInteriorDoors;
+            }
+            const doorPrice = doorQty * pricing['doorway-disc'];
+            items.push({
+                name: 'Doorway Disc Solution',
+                description: tier.doorCoverage === 'all' ? 'All doors' : 'External + Bedroom',
+                qty: doorQty,
+                unit: 'doors',
+                unitPrice: pricing['doorway-disc'],
+                total: doorPrice
+            });
+            total += doorPrice;
+
+            // Space Harmonizer
+            if (tier.includesSpaceHarmonizer) {
+                const harmonizerQty = Math.ceil(prop.floorAreaSqm / 200) * prop.numFloors;
+                const harmonizerPrice = harmonizerQty * pricing['space-harmonizer'];
+                items.push({
+                    name: 'Space Harmonizer',
+                    description: '1 per 200m²/floor',
+                    qty: harmonizerQty,
+                    unit: 'units',
+                    unitPrice: pricing['space-harmonizer'],
+                    total: harmonizerPrice
+                });
+                total += harmonizerPrice;
             }
 
-            if (screen === 4) {
-                if (selectedTier === 'essential') {
-                    quoteData.property.numInteriorDoors = parseInt(document.getElementById('numInteriorDoors').value) || 0;
-                    quoteData.property.numWifiRouters = parseInt(document.getElementById('numWifiRouters').value) || 0;
-                } else if (selectedTier === 'essential-plus') {
-                    quoteData.property.numInteriorDoors = parseInt(document.getElementById('numInteriorDoorsPlus').value) || 0;
-                    quoteData.property.numLivingSpaces = parseInt(document.getElementById('numLivingSpaces').value) || 0;
-                    quoteData.property.numLivingWindows = parseInt(document.getElementById('numLivingWindows').value) || 0;
-                    quoteData.property.numLivingMirrors = parseInt(document.getElementById('numLivingMirrors').value) || 0;
-                    quoteData.property.numLivingOutlets = parseInt(document.getElementById('numLivingOutlets').value) || 0;
-                    quoteData.property.numTVsAppliances = parseInt(document.getElementById('numTVsAppliances').value) || 0;
-                    quoteData.property.numWifiRouters = parseInt(document.getElementById('numWifiRoutersPlus').value) || 0;
+            // Cubic Disc Center
+            if (tier.includesCubicDiscCenter) {
+                const cubicQty = Math.ceil(prop.floorAreaSqm / 75) * prop.numFloors;
+                const cubicPrice = cubicQty * pricing['cubic-disc-center'];
+                items.push({
+                    name: 'Cubic Disc BG3 Center',
+                    description: '1 per 75m²/floor',
+                    qty: cubicQty,
+                    unit: 'units',
+                    unitPrice: pricing['cubic-disc-center'],
+                    total: cubicPrice
+                });
+                total += cubicPrice;
+            }
+
+            // Earth Gridlines - Bedrooms
+            if (tier.includesEarthGridlines && prop.numBedrooms > 0) {
+                const earthQty = prop.numBedrooms * 2;
+                const earthPrice = earthQty * pricing['earth-grid'];
+                items.push({
+                    name: 'Earth Gridlines (Bedrooms)',
+                    description: 'H/B + Curry per bedroom',
+                    qty: earthQty,
+                    unit: 'discs',
+                    unitPrice: pricing['earth-grid'],
+                    total: earthPrice
+                });
+                total += earthPrice;
+            }
+
+            // Water Supply
+            const waterPrice = prop.numWaterSupplyPoints * pricing['water-strip'];
+            items.push({
+                name: 'Water Supply Solution',
+                description: 'Strip #11',
+                qty: prop.numWaterSupplyPoints,
+                unit: 'units',
+                unitPrice: pricing['water-strip'],
+                total: waterPrice
+            });
+            total += waterPrice;
+
+            // Electrical Panels
+            const elecPrice = prop.numElectricalPanels * pricing['elec-panel'];
+            items.push({
+                name: 'Electrical Panel Solution',
+                description: 'Strips + SGFuse',
+                qty: prop.numElectricalPanels,
+                unit: 'panels',
+                unitPrice: pricing['elec-panel'],
+                total: elecPrice
+            });
+            total += elecPrice;
+
+            // L66 Bedside
+            if (prop.numBedsideOutlets > 0) {
+                const bedsidePrice = prop.numBedsideOutlets * pricing['l66'];
+                items.push({
+                    name: 'L66 Bedside Outlets',
+                    description: '',
+                    qty: prop.numBedsideOutlets,
+                    unit: 'outlets',
+                    unitPrice: pricing['l66'],
+                    total: bedsidePrice
+                });
+                total += bedsidePrice;
+            }
+
+            // Bedroom Windows
+            if (prop.numBedroomWindows > 0) {
+                const bedWinPrice = prop.numBedroomWindows * pricing['l-window'];
+                items.push({
+                    name: 'Bedroom Windows',
+                    description: 'L Solution',
+                    qty: prop.numBedroomWindows,
+                    unit: 'windows',
+                    unitPrice: pricing['l-window'],
+                    total: bedWinPrice
+                });
+                total += bedWinPrice;
+            }
+
+            // Bedroom Mirrors
+            if (tier.includesBedroomMirrors && prop.numBedroomMirrors > 0) {
+                const bedMirPrice = prop.numBedroomMirrors * pricing['l90-mirror'];
+                items.push({
+                    name: 'Bedroom Mirrors',
+                    description: 'L90 Solution',
+                    qty: prop.numBedroomMirrors,
+                    unit: 'mirrors',
+                    unitPrice: pricing['l90-mirror'],
+                    total: bedMirPrice
+                });
+                total += bedMirPrice;
+            }
+
+            // L-Wifi
+            if (tier.includesLWifi && prop.numWifiRouters > 0) {
+                const wifiPrice = prop.numWifiRouters * pricing['l-wifi'];
+                items.push({
+                    name: 'L-Wifi Solution',
+                    description: '',
+                    qty: prop.numWifiRouters,
+                    unit: 'routers',
+                    unitPrice: pricing['l-wifi'],
+                    total: wifiPrice
+                });
+                total += wifiPrice;
+            }
+
+            // Essential Plus Living Area Add-ons
+            if (tier.includesLivingAddons) {
+                // Earth Gridlines - Living
+                if (prop.numLivingSpaces > 0) {
+                    const livingEarthQty = prop.numLivingSpaces * 2;
+                    const livingEarthPrice = livingEarthQty * pricing['earth-grid'];
+                    items.push({
+                        name: 'Earth Gridlines (Living)',
+                        description: 'H/B + Curry per space',
+                        qty: livingEarthQty,
+                        unit: 'discs',
+                        unitPrice: pricing['earth-grid'],
+                        total: livingEarthPrice
+                    });
+                    total += livingEarthPrice;
+                }
+
+                // L66 Living Outlets
+                if (prop.numLivingOutlets > 0) {
+                    const livingOutletPrice = prop.numLivingOutlets * pricing['l66'];
+                    items.push({
+                        name: 'L66 Living Outlets',
+                        description: '',
+                        qty: prop.numLivingOutlets,
+                        unit: 'outlets',
+                        unitPrice: pricing['l66'],
+                        total: livingOutletPrice
+                    });
+                    total += livingOutletPrice;
+                }
+
+                // Living Windows
+                if (prop.numLivingWindows > 0) {
+                    const livingWinPrice = prop.numLivingWindows * pricing['l-window'];
+                    items.push({
+                        name: 'Living Windows',
+                        description: 'L Solution',
+                        qty: prop.numLivingWindows,
+                        unit: 'windows',
+                        unitPrice: pricing['l-window'],
+                        total: livingWinPrice
+                    });
+                    total += livingWinPrice;
+                }
+
+                // Living Mirrors
+                if (prop.numLivingMirrors > 0) {
+                    const livingMirPrice = prop.numLivingMirrors * pricing['l90-mirror'];
+                    items.push({
+                        name: 'Living Mirrors',
+                        description: 'L90 Solution',
+                        qty: prop.numLivingMirrors,
+                        unit: 'mirrors',
+                        unitPrice: pricing['l90-mirror'],
+                        total: livingMirPrice
+                    });
+                    total += livingMirPrice;
+                }
+
+                // TVs & Appliances
+                if (prop.numTVsAppliances > 0) {
+                    const tvPrice = prop.numTVsAppliances * pricing['cubic-disc-tv'];
+                    items.push({
+                        name: 'Cubic Disc TVs/Appliances',
+                        description: '',
+                        qty: prop.numTVsAppliances,
+                        unit: 'units',
+                        unitPrice: pricing['cubic-disc-tv'],
+                        total: tvPrice
+                    });
+                    total += tvPrice;
                 }
             }
 
-            if (screen === 5) {
-                quoteData.addons = [];
+            // Service fees
+            if (pricing['consultation'] > 0) {
+                items.push({
+                    name: 'Consultation Fee',
+                    description: '',
+                    qty: 1,
+                    unit: '',
+                    unitPrice: pricing['consultation'],
+                    total: pricing['consultation']
+                });
+                total += pricing['consultation'];
+            }
+            if (pricing['installation'] > 0) {
+                items.push({
+                    name: 'Installation Fee',
+                    description: '',
+                    qty: 1,
+                    unit: '',
+                    unitPrice: pricing['installation'],
+                    total: pricing['installation']
+                });
+                total += pricing['installation'];
+            }
 
-                if (selectedTier === 'essential') {
-                    if (document.getElementById('addon-wifi').checked) quoteData.addons.push('wifi');
-                    if (document.getElementById('addon-bedroom-mirrors').checked) quoteData.addons.push('bedroom-mirrors');
-                } else if (selectedTier === 'essential-plus') {
-                    if (document.getElementById('addon-wifi-plus').checked) quoteData.addons.push('wifi');
-                    if (document.getElementById('addon-bedroom-mirrors-plus').checked) quoteData.addons.push('bedroom-mirrors');
-                    if (document.getElementById('addon-earth-gridlines-living').checked) quoteData.addons.push('earth-gridlines-living');
-                    if (document.getElementById('addon-l66-living').checked) quoteData.addons.push('l66-living');
-                    if (document.getElementById('addon-cubic-disc-tv').checked) quoteData.addons.push('cubic-disc-tv');
-                    if (document.getElementById('addon-living-windows').checked) quoteData.addons.push('living-windows');
-                    if (document.getElementById('addon-living-mirrors').checked) quoteData.addons.push('living-mirrors');
+            quoteData.quotes[tierKey] = { items, total };
+        }
+
+        // ============================================
+        // RENDER COMPARISON
+        // ============================================
+        function renderComparison() {
+            // Summary
+            document.getElementById('summary-client').textContent = quoteData.client.name;
+            document.getElementById('summary-property').textContent = quoteData.property.address;
+            document.getElementById('summary-size').textContent = `${quoteData.property.floorAreaSqm} m² (${Math.round(quoteData.property.floorAreaSqft).toLocaleString()} sq ft), ${quoteData.property.numFloors} floor(s), ${quoteData.property.numBedrooms} bedroom(s)`;
+
+            // Check if pricing is configured
+            const hasPricing = Object.values(pricing).some(p => p > 0);
+            document.getElementById('pricing-warning').classList.toggle('hidden', hasPricing);
+
+            // Render each tier
+            ['intro', 'essential', 'essential-plus'].forEach(tierKey => {
+                const quote = quoteData.quotes[tierKey];
+                const tier = tierConfig[tierKey];
+                const itemsEl = document.getElementById(`${tierKey === 'essential-plus' ? 'plus' : tierKey}-items`);
+                const totalEl = document.getElementById(`${tierKey === 'essential-plus' ? 'plus' : tierKey}-total`);
+
+                // Total
+                if (hasPricing) {
+                    totalEl.textContent = formatCurrency(quote.total);
+                    totalEl.classList.remove('not-configured');
+                } else {
+                    totalEl.textContent = 'Configure Prices';
+                    totalEl.classList.add('not-configured');
+                }
+
+                // Items
+                itemsEl.innerHTML = '';
+                quote.items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span class="item-name">${item.name}</span>
+                        <span class="item-qty">${item.qty}</span>
+                        <span class="item-price">${hasPricing ? formatCurrency(item.total) : '—'}</span>
+                    `;
+                    itemsEl.appendChild(li);
+                });
+            });
+        }
+
+        // ============================================
+        // PROPOSAL GENERATION
+        // ============================================
+        function generateAllProposals() {
+            generateComparisonProposal();
+            generateTierProposal('intro');
+            generateTierProposal('essential');
+            generateTierProposal('essential-plus');
+        }
+
+        function generateComparisonProposal() {
+            const today = new Date();
+            const hasPricing = Object.values(pricing).some(p => p > 0);
+
+            let text = `BIOGEOMETRY ENVIRONMENTAL HOME SOLUTIONS
+QUOTE COMPARISON
+${'='.repeat(50)}
+
+Date: ${today.toLocaleDateString()}
+Prepared for: ${quoteData.client.name}
+Email: ${quoteData.client.email}
+${quoteData.client.phone ? `Phone: ${quoteData.client.phone}` : ''}
+
+Property: ${quoteData.property.address}
+Size: ${quoteData.property.floorAreaSqm} m² (${Math.round(quoteData.property.floorAreaSqft).toLocaleString()} sq ft)
+Floors: ${quoteData.property.numFloors} | Bedrooms: ${quoteData.property.numBedrooms}
+
+${'='.repeat(50)}
+THREE SERVICE OPTIONS
+${'='.repeat(50)}
+
+`;
+
+            ['intro', 'essential', 'essential-plus'].forEach(tierKey => {
+                const tier = tierConfig[tierKey];
+                const quote = quoteData.quotes[tierKey];
+
+                text += `
+${'-'.repeat(50)}
+${tier.name.toUpperCase()}${hasPricing ? ` - TOTAL: ${formatCurrency(quote.total)}` : ''}
+${'-'.repeat(50)}
+
+`;
+                quote.items.forEach(item => {
+                    const priceStr = hasPricing ? formatCurrency(item.total) : 'TBD';
+                    text += `${item.name.padEnd(35)} ${String(item.qty).padStart(4)} ${priceStr.padStart(10)}\n`;
+                });
+
+                if (hasPricing) {
+                    text += `${''.padEnd(35)} ${''.padStart(4)} ${'-'.repeat(10)}\n`;
+                    text += `${'SUBTOTAL'.padEnd(35)} ${''.padStart(4)} ${formatCurrency(quote.total).padStart(10)}\n`;
+                }
+                text += '\n';
+            });
+
+            text += `
+${'='.repeat(50)}
+TIER DESCRIPTIONS
+${'='.repeat(50)}
+
+INTRO:
+Entry-level protection for bedrooms and critical systems.
+- BG28 Ring density: 1 pair per 100m²/floor
+- Doors: External + Bedroom only
+- Does NOT include: Space Harmonizer, Earth Gridlines, L-Wifi
+
+ESSENTIAL:
+Complete protection with space harmonization.
+- BG28 Ring density: 1 pair per 50m²/floor (double Intro)
+- Doors: ALL doors covered
+- Includes: Space Harmonizer, Cubic Disc Center, Earth Gridlines (bedrooms), L-Wifi
+
+ESSENTIAL PLUS:
+Comprehensive coverage including living areas.
+- Everything in Essential, PLUS:
+- Earth Gridlines for living spaces
+- L66 outlets in living areas
+- Windows & mirrors in living areas
+- TV & large appliance protection
+
+${'='.repeat(50)}
+
+Questions? Please contact us to discuss which tier best fits your needs.
+`;
+
+            document.getElementById('proposal-comparison').value = text;
+        }
+
+        function generateTierProposal(tierKey) {
+            const tier = tierConfig[tierKey];
+            const quote = quoteData.quotes[tierKey];
+            const today = new Date();
+            const validUntil = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
+            const hasPricing = Object.values(pricing).some(p => p > 0);
+
+            const quoteNumber = `BG-${today.getFullYear()}-${String(Math.floor(Math.random() * 1000)).padStart(3, '0')}`;
+
+            let text = `BIOGEOMETRY ENVIRONMENTAL HOME SOLUTIONS
+PROPOSAL - ${tier.name.toUpperCase()} TIER
+${'='.repeat(50)}
+
+Quote #: ${quoteNumber}
+Date: ${today.toLocaleDateString()}
+Valid Until: ${validUntil.toLocaleDateString()}
+
+Prepared for: ${quoteData.client.name}
+Email: ${quoteData.client.email}
+${quoteData.client.phone ? `Phone: ${quoteData.client.phone}` : ''}
+
+Property: ${quoteData.property.address}
+
+${'='.repeat(50)}
+PROPERTY SPECIFICATIONS
+${'='.repeat(50)}
+
+- Floor area: ${quoteData.property.floorAreaSqm} m² (${Math.round(quoteData.property.floorAreaSqft).toLocaleString()} sq ft)
+- Number of floors: ${quoteData.property.numFloors}
+- Bedrooms: ${quoteData.property.numBedrooms}
+- External doors: ${quoteData.property.numExternalDoors}
+- Bedroom doors: ${quoteData.property.numBedroomDoors}
+- Interior doors: ${quoteData.property.numInteriorDoors}
+- Electrical panels: ${quoteData.property.numElectricalPanels}
+- Water supply points: ${quoteData.property.numWaterSupplyPoints}
+- WiFi routers: ${quoteData.property.numWifiRouters}
+- Bedside outlets: ${quoteData.property.numBedsideOutlets}
+- Bedroom windows: ${quoteData.property.numBedroomWindows}
+- Bedroom mirrors: ${quoteData.property.numBedroomMirrors}
+${tierKey === 'essential-plus' ? `- Living spaces: ${quoteData.property.numLivingSpaces}
+- Living windows: ${quoteData.property.numLivingWindows}
+- Living mirrors: ${quoteData.property.numLivingMirrors}
+- Living outlets: ${quoteData.property.numLivingOutlets}
+- TVs/Appliances: ${quoteData.property.numTVsAppliances}` : ''}
+
+${'='.repeat(50)}
+SCOPE OF WORK
+${'='.repeat(50)}
+
+`;
+
+            quote.items.forEach(item => {
+                const priceStr = hasPricing ? formatCurrency(item.total) : 'TBD';
+                text += `${item.name}\n`;
+                text += `  Qty: ${item.qty} ${item.unit}     Price: ${priceStr}\n\n`;
+            });
+
+            text += `${'='.repeat(50)}
+INVESTMENT
+${'='.repeat(50)}
+
+`;
+
+            if (hasPricing) {
+                text += `TOTAL: ${formatCurrency(quote.total)}\n`;
+            } else {
+                text += `TOTAL: Prices to be confirmed\n`;
+            }
+
+            text += `
+${'='.repeat(50)}
+TERMS & CONDITIONS
+${'='.repeat(50)}
+
+- Quote valid for 30 days from date of issue
+- Materials included in quoted price
+- Installation performed by certified BioGeometry practitioner
+- Client to provide clear access to all areas
+- Changes to scope may affect pricing
+
+${'='.repeat(50)}
+NEXT STEPS
+${'='.repeat(50)}
+
+1. Review this proposal
+2. Reply to confirm acceptance
+3. Schedule installation date(s)
+4. Prepare property for installation
+
+Questions? Contact us to discuss any details.
+
+${'='.repeat(50)}
+
+Thank you for your interest in BioGeometry Environmental Home Solutions.
+
+BioGeometry Associate Practitioner
+`;
+
+            const textareaId = `proposal-${tierKey === 'essential-plus' ? 'plus' : tierKey}`;
+            document.getElementById(textareaId).value = text;
+        }
+
+        function exportTier(tierKey) {
+            generateTierProposal(tierKey);
+            showScreen(4);
+            switchExportTab(tierKey === 'essential-plus' ? 'plus' : tierKey);
+        }
+
+        // ============================================
+        // EXPORT UI
+        // ============================================
+        function switchExportTab(tab) {
+            document.querySelectorAll('.export-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.export-content').forEach(c => c.classList.remove('active'));
+
+            document.querySelector(`.export-tab[onclick="switchExportTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`export-${tab}`).classList.add('active');
+        }
+
+        function copyToClipboard(textareaId) {
+            const textarea = document.getElementById(textareaId);
+            textarea.select();
+            document.execCommand('copy');
+
+            const feedbackId = `copy-feedback-${textareaId.replace('proposal-', '')}`;
+            const feedback = document.getElementById(feedbackId);
+            feedback.classList.add('show');
+            setTimeout(() => feedback.classList.remove('show'), 2000);
+        }
+
+        // ============================================
+        // PRICING CONFIGURATION
+        // ============================================
+        function openPricingConfig() {
+            loadPricingToForm();
+            document.getElementById('pricing-modal').classList.add('active');
+        }
+
+        function closePricingConfig() {
+            document.getElementById('pricing-modal').classList.remove('active');
+        }
+
+        function loadPricingToForm() {
+            Object.keys(pricing).forEach(key => {
+                const input = document.getElementById(`price-${key}`);
+                if (input) {
+                    input.value = pricing[key] || '';
+                }
+            });
+        }
+
+        function savePricing() {
+            Object.keys(pricing).forEach(key => {
+                const input = document.getElementById(`price-${key}`);
+                if (input) {
+                    pricing[key] = parseFloat(input.value) || 0;
+                }
+            });
+            localStorage.setItem('bgehs-pricing', JSON.stringify(pricing));
+            closePricingConfig();
+
+            // Recalculate if on comparison screen
+            if (currentScreen === 3) {
+                calculateAllTiers();
+                renderComparison();
+            }
+
+            alert('Prices saved successfully!');
+        }
+
+        function loadPricing() {
+            const saved = localStorage.getItem('bgehs-pricing');
+            if (saved) {
+                try {
+                    pricing = { ...pricing, ...JSON.parse(saved) };
+                } catch (e) {
+                    console.error('Error loading pricing:', e);
                 }
             }
         }
 
-        // Tier Selection
-        function selectTier(tier) {
-            selectedTier = tier;
-            document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
-            document.querySelector(`.tier-card[onclick="selectTier('${tier}')"]`).classList.add('selected');
-            document.getElementById(`tier-${tier}`).checked = true;
-        }
-
-        function updateTierSpecificVisibility() {
-            document.getElementById('tier-specific-intro').classList.add('hidden');
-            document.getElementById('tier-specific-essential').classList.add('hidden');
-            document.getElementById('tier-specific-essential-plus').classList.add('hidden');
-
-            if (selectedTier === 'intro') {
-                document.getElementById('tier-specific-intro').classList.remove('hidden');
-            } else if (selectedTier === 'essential') {
-                document.getElementById('tier-specific-essential').classList.remove('hidden');
-            } else if (selectedTier === 'essential-plus') {
-                document.getElementById('tier-specific-essential-plus').classList.remove('hidden');
+        function resetPricing() {
+            if (confirm('Reset all prices to zero?')) {
+                Object.keys(pricing).forEach(key => {
+                    pricing[key] = 0;
+                    const input = document.getElementById(`price-${key}`);
+                    if (input) input.value = '';
+                });
             }
         }
 
-        function updateAddonsVisibility() {
-            document.getElementById('addons-intro').classList.add('hidden');
-            document.getElementById('addons-essential').classList.add('hidden');
-            document.getElementById('addons-essential-plus').classList.add('hidden');
+        // ============================================
+        // SAVED QUOTES
+        // ============================================
+        function openSavedQuotes() {
+            renderSavedQuotesList();
+            document.getElementById('saved-quotes-modal').classList.add('active');
+        }
 
-            if (selectedTier === 'intro') {
-                document.getElementById('addons-intro').classList.remove('hidden');
-            } else if (selectedTier === 'essential') {
-                document.getElementById('addons-essential').classList.remove('hidden');
-            } else if (selectedTier === 'essential-plus') {
-                document.getElementById('addons-essential-plus').classList.remove('hidden');
+        function closeSavedQuotes() {
+            document.getElementById('saved-quotes-modal').classList.remove('active');
+        }
+
+        function saveQuote() {
+            const savedQuotes = JSON.parse(localStorage.getItem('bgehs-quotes') || '[]');
+            const quote = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                client: quoteData.client,
+                property: quoteData.property,
+                quotes: quoteData.quotes
+            };
+            savedQuotes.push(quote);
+            localStorage.setItem('bgehs-quotes', JSON.stringify(savedQuotes));
+            alert('Quote saved successfully!');
+        }
+
+        function loadQuote(id) {
+            const savedQuotes = JSON.parse(localStorage.getItem('bgehs-quotes') || '[]');
+            const quote = savedQuotes.find(q => q.id === id);
+            if (quote) {
+                quoteData = {
+                    client: quote.client,
+                    property: quote.property,
+                    quotes: quote.quotes
+                };
+
+                // Populate form fields
+                document.getElementById('clientName').value = quote.client.name || '';
+                document.getElementById('clientEmail').value = quote.client.email || '';
+                document.getElementById('clientPhone').value = quote.client.phone || '';
+                document.getElementById('propertyAddress').value = quote.property.address || '';
+                document.getElementById('floorAreaSqm').value = quote.property.floorAreaSqm || '';
+                document.getElementById('numFloors').value = quote.property.numFloors || 1;
+                document.getElementById('numBedrooms').value = quote.property.numBedrooms || '';
+                document.getElementById('numExternalDoors').value = quote.property.numExternalDoors || 1;
+                document.getElementById('numBedroomDoors').value = quote.property.numBedroomDoors || '';
+                document.getElementById('numInteriorDoors').value = quote.property.numInteriorDoors || 0;
+                document.getElementById('numElectricalPanels').value = quote.property.numElectricalPanels || 1;
+                document.getElementById('numWaterSupplyPoints').value = quote.property.numWaterSupplyPoints || 1;
+                document.getElementById('numWifiRouters').value = quote.property.numWifiRouters || 0;
+                document.getElementById('numBedsideOutlets').value = quote.property.numBedsideOutlets || '';
+                document.getElementById('numBedroomWindows').value = quote.property.numBedroomWindows || '';
+                document.getElementById('numBedroomMirrors').value = quote.property.numBedroomMirrors || 0;
+                document.getElementById('numLivingSpaces').value = quote.property.numLivingSpaces || 0;
+                document.getElementById('numLivingWindows').value = quote.property.numLivingWindows || 0;
+                document.getElementById('numLivingMirrors').value = quote.property.numLivingMirrors || 0;
+                document.getElementById('numLivingOutlets').value = quote.property.numLivingOutlets || 0;
+                document.getElementById('numTVsAppliances').value = quote.property.numTVsAppliances || 0;
+
+                updateSqFt();
+                closeSavedQuotes();
+                showScreen(3);
+                renderComparison();
             }
         }
 
-        function updateAddonState() {
-            // Future: Enable/disable related inputs based on addon selection
+        function deleteQuote(id) {
+            if (confirm('Delete this saved quote?')) {
+                let savedQuotes = JSON.parse(localStorage.getItem('bgehs-quotes') || '[]');
+                savedQuotes = savedQuotes.filter(q => q.id !== id);
+                localStorage.setItem('bgehs-quotes', JSON.stringify(savedQuotes));
+                renderSavedQuotesList();
+            }
         }
 
-        // Helper Functions
+        function renderSavedQuotesList() {
+            const savedQuotes = JSON.parse(localStorage.getItem('bgehs-quotes') || '[]');
+            const listEl = document.getElementById('saved-quotes-list');
+            const noQuotesEl = document.getElementById('no-saved-quotes');
+
+            if (savedQuotes.length === 0) {
+                listEl.innerHTML = '<p>No saved quotes yet.</p>';
+                return;
+            }
+
+            listEl.innerHTML = '';
+            savedQuotes.reverse().forEach(quote => {
+                const date = new Date(quote.date).toLocaleDateString();
+                const div = document.createElement('div');
+                div.className = 'saved-quote-item';
+                div.innerHTML = `
+                    <div class="saved-quote-info">
+                        <strong>${quote.client.name}</strong>
+                        <small>${quote.property.address} | ${date}</small>
+                    </div>
+                    <div class="saved-quote-actions">
+                        <button class="btn-small btn-primary" onclick="loadQuote(${quote.id})">Load</button>
+                        <button class="btn-small btn-secondary" onclick="deleteQuote(${quote.id})">Delete</button>
+                    </div>
+                `;
+                listEl.appendChild(div);
+            });
+        }
+
+        // ============================================
+        // HELPERS
+        // ============================================
+        function formatCurrency(amount) {
+            return '$' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
         function updateSqFt() {
             const sqm = parseFloat(document.getElementById('floorAreaSqm').value) || 0;
             const sqft = Math.round(sqm * 10.764);
@@ -1290,425 +2041,11 @@
             document.getElementById('numBedsideOutlets').value = bedrooms * 2;
         }
 
-        // Calculation Engine
-        function calculateQuote() {
-            const tier = tierDefinitions[selectedTier];
-            const prop = quoteData.property;
-            quoteData.lineItems = [];
-
-            // BG28 Ring Calculation
-            const pairsPerFloor = Math.ceil(prop.floorAreaSqm / tier.bg28Density);
-            const totalBG28Pairs = pairsPerFloor * prop.numFloors;
-            quoteData.lineItems.push({
-                category: 'mandatory',
-                code: 'BG28_RING_PAIR',
-                name: 'BG28 Ring BG3 Center Solution (Pair)',
-                description: `1 pair per ${tier.bg28Density}m² per floor`,
-                quantity: totalBG28Pairs,
-                unit: 'pairs'
-            });
-
-            // Doorway Disc Calculation
-            let totalDoors;
-            if (tier.doorCoverage === 'external-bedroom') {
-                totalDoors = prop.numExternalDoors + prop.numBedroomDoors;
-            } else {
-                totalDoors = prop.numExternalDoors + prop.numBedroomDoors + (prop.numInteriorDoors || 0);
-            }
-            quoteData.lineItems.push({
-                category: 'mandatory',
-                code: 'DOORWAY_DISC',
-                name: 'Doorway Disc Solution (D-Disc + BG3 #7 Strip)',
-                description: tier.doorCoverage === 'all' ? 'All doors' : 'External + Bedroom doors only',
-                quantity: totalDoors,
-                unit: 'doors'
-            });
-
-            // Space Harmonizer (Essential+)
-            if (tier.includesSpaceHarmonizer) {
-                const harmonizersPerFloor = Math.ceil(prop.floorAreaSqm / 200);
-                const totalHarmonizers = harmonizersPerFloor * prop.numFloors;
-                quoteData.lineItems.push({
-                    category: 'mandatory',
-                    code: 'SPACE_HARMONIZER',
-                    name: 'BG3 Center BG Space Harmonizer Solution',
-                    description: '1 per 200m² per floor',
-                    quantity: totalHarmonizers,
-                    unit: 'units'
-                });
-            }
-
-            // Cubic Disc Center (Essential+)
-            if (tier.includesCubicDiscCenter) {
-                const cubicPerFloor = Math.ceil(prop.floorAreaSqm / 75);
-                const totalCubic = cubicPerFloor * prop.numFloors;
-                quoteData.lineItems.push({
-                    category: 'mandatory',
-                    code: 'CUBIC_DISC_CENTER',
-                    name: 'BG-EHS Cubic Disc BG3 Center Solution',
-                    description: '1 per 75m² per floor',
-                    quantity: totalCubic,
-                    unit: 'units'
-                });
-            }
-
-            // Earth Gridlines - Bedrooms (Essential+)
-            if (tier.includesEarthGridlines && prop.numBedrooms > 0) {
-                const earthGridSets = prop.numBedrooms * 2; // H/B + Curry per bedroom
-                quoteData.lineItems.push({
-                    category: 'mandatory',
-                    code: 'EARTH_GRID_BED',
-                    name: 'Earth Gridlines Discs - Bedrooms (H/B + Curry)',
-                    description: '1 of each per bedroom',
-                    quantity: earthGridSets,
-                    unit: 'discs'
-                });
-            }
-
-            // Water Supply Solution (All tiers)
-            quoteData.lineItems.push({
-                category: 'mandatory',
-                code: 'WATER_STRIP',
-                name: 'P3 Water Supply Solution (BG3 Numerical Strip #11)',
-                description: 'Per water supply point',
-                quantity: prop.numWaterSupplyPoints,
-                unit: 'units'
-            });
-
-            // Electrical Panel Solution (All tiers)
-            quoteData.lineItems.push({
-                category: 'mandatory',
-                code: 'ELEC_PANEL_KIT',
-                name: 'P3 Electrical Panel Solution',
-                description: 'BG3 Numerical Strips #9 & 16/19 + SGFuse L-Solution',
-                quantity: prop.numElectricalPanels,
-                unit: 'panels'
-            });
-
-            // L66 Bedside Outlets (All tiers)
-            if (prop.numBedsideOutlets > 0) {
-                quoteData.lineItems.push({
-                    category: 'mandatory',
-                    code: 'L66_BEDSIDE',
-                    name: 'P3 BG3 L66 Solution - Bedside Outlets',
-                    description: 'Per bedside outlet',
-                    quantity: prop.numBedsideOutlets,
-                    unit: 'outlets'
-                });
-            }
-
-            // Bedroom Windows (All tiers)
-            if (prop.numBedroomWindows > 0) {
-                quoteData.lineItems.push({
-                    category: 'mandatory',
-                    code: 'L_WINDOW_BED',
-                    name: 'P3 BG3 L Solution - Bedroom Windows',
-                    description: 'Per bedroom window',
-                    quantity: prop.numBedroomWindows,
-                    unit: 'windows'
-                });
-            }
-
-            // Bedroom Mirrors - Intro includes, Essential/Plus is addon
-            if (tier.includesBedroomMirrors && prop.numBedroomMirrors > 0) {
-                quoteData.lineItems.push({
-                    category: 'mandatory',
-                    code: 'L90_MIRROR_BED',
-                    name: 'P3 BG3 L90 Solution - Bedroom Mirrors',
-                    description: 'Per bedroom mirror',
-                    quantity: prop.numBedroomMirrors,
-                    unit: 'mirrors'
-                });
-            }
-
-            // Process Add-ons
-            if (quoteData.addons.includes('wifi') && prop.numWifiRouters > 0) {
-                quoteData.lineItems.push({
-                    category: 'addon',
-                    code: 'ADDON_L_WIFI',
-                    name: 'P3 BG3 L-Wifi Solution',
-                    description: 'Per router/access point',
-                    quantity: prop.numWifiRouters,
-                    unit: 'routers'
-                });
-            }
-
-            if (quoteData.addons.includes('bedroom-mirrors') && prop.numBedroomMirrors > 0) {
-                quoteData.lineItems.push({
-                    category: 'addon',
-                    code: 'ADDON_MIRROR_BED',
-                    name: 'P3 BG3 L90 Solution - Bedroom Mirrors',
-                    description: 'Per bedroom mirror',
-                    quantity: prop.numBedroomMirrors,
-                    unit: 'mirrors'
-                });
-            }
-
-            if (quoteData.addons.includes('earth-gridlines-living') && prop.numLivingSpaces > 0) {
-                const livingGridSets = prop.numLivingSpaces * 2;
-                quoteData.lineItems.push({
-                    category: 'addon',
-                    code: 'ADDON_EARTH_GRID_LIVING',
-                    name: 'Earth Gridlines Discs - Living Spaces (H/B + Curry)',
-                    description: '1 of each per living space',
-                    quantity: livingGridSets,
-                    unit: 'discs'
-                });
-            }
-
-            if (quoteData.addons.includes('l66-living') && prop.numLivingOutlets > 0) {
-                quoteData.lineItems.push({
-                    category: 'addon',
-                    code: 'ADDON_L66_LIVING',
-                    name: 'P3 BG3 L66 Solution - Living Area Outlets',
-                    description: 'Per outlet',
-                    quantity: prop.numLivingOutlets,
-                    unit: 'outlets'
-                });
-            }
-
-            if (quoteData.addons.includes('cubic-disc-tv') && prop.numTVsAppliances > 0) {
-                quoteData.lineItems.push({
-                    category: 'addon',
-                    code: 'ADDON_CUBIC_DISC_TV',
-                    name: 'P3 BG-EHS Cubic Disc Solution - TVs & Large Appliances',
-                    description: 'Per TV/appliance',
-                    quantity: prop.numTVsAppliances,
-                    unit: 'units'
-                });
-            }
-
-            if (quoteData.addons.includes('living-windows') && prop.numLivingWindows > 0) {
-                quoteData.lineItems.push({
-                    category: 'addon',
-                    code: 'ADDON_L_WINDOW_LIVING',
-                    name: 'P3 BG3 L Solution - Living Area Windows',
-                    description: 'Per window',
-                    quantity: prop.numLivingWindows,
-                    unit: 'windows'
-                });
-            }
-
-            if (quoteData.addons.includes('living-mirrors') && prop.numLivingMirrors > 0) {
-                quoteData.lineItems.push({
-                    category: 'addon',
-                    code: 'ADDON_L90_MIRROR_LIVING',
-                    name: 'P3 BG3 L90 Solution - Living Area Mirrors',
-                    description: 'Per mirror',
-                    quantity: prop.numLivingMirrors,
-                    unit: 'mirrors'
-                });
-            }
-        }
-
-        // Render Review Screen
-        function renderReview() {
-            const tier = tierDefinitions[selectedTier];
-
-            // Client info
-            document.getElementById('review-client-name').textContent = quoteData.client.name;
-            document.getElementById('review-client-email').textContent = quoteData.client.email;
-            document.getElementById('review-property').textContent = quoteData.property.address;
-            document.getElementById('review-size').textContent = `${quoteData.property.floorAreaSqm} m² (${Math.round(quoteData.property.floorAreaSqft).toLocaleString()} sq ft), ${quoteData.property.numFloors} floor(s), ${quoteData.property.numBedrooms} bedroom(s)`;
-
-            // Tier info
-            document.getElementById('review-tier').textContent = tier.name;
-            document.getElementById('review-tier-desc').textContent = tier.description;
-
-            // Status
-            document.getElementById('quote-status').innerHTML = '<span class="status-badge ready">Ready for Review</span>';
-
-            // Line items
-            const tbody = document.getElementById('line-items-body');
-            tbody.innerHTML = '';
-
-            // Mandatory items
-            const mandatoryItems = quoteData.lineItems.filter(i => i.category === 'mandatory');
-            if (mandatoryItems.length > 0) {
-                tbody.innerHTML += `<tr class="category-header"><td colspan="3">${tier.name} Tier - Included Items</td></tr>`;
-                mandatoryItems.forEach(item => {
-                    tbody.innerHTML += `
-                        <tr>
-                            <td>
-                                <strong>${item.name}</strong><br>
-                                <small style="color: var(--text-light)">${item.description}</small>
-                            </td>
-                            <td class="qty">${item.quantity}</td>
-                            <td class="price">TBD</td>
-                        </tr>
-                    `;
-                });
-            }
-
-            // Add-on items
-            const addonItems = quoteData.lineItems.filter(i => i.category === 'addon');
-            if (addonItems.length > 0) {
-                tbody.innerHTML += `<tr class="category-header"><td colspan="3">Selected Add-ons</td></tr>`;
-                addonItems.forEach(item => {
-                    tbody.innerHTML += `
-                        <tr>
-                            <td>
-                                <strong>${item.name}</strong><br>
-                                <small style="color: var(--text-light)">${item.description}</small>
-                            </td>
-                            <td class="qty">${item.quantity}</td>
-                            <td class="price">TBD</td>
-                        </tr>
-                    `;
-                });
-            }
-
-            // Total row
-            tbody.innerHTML += `
-                <tr class="total">
-                    <td colspan="2">TOTAL</td>
-                    <td class="price">Prices TBD</td>
-                </tr>
-            `;
-        }
-
-        // Generate Proposal Text
-        function generateProposal() {
-            const tier = tierDefinitions[selectedTier];
-            const today = new Date();
-            const validUntil = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
-
-            const quoteNumber = `BG-${today.getFullYear()}-${String(Math.floor(Math.random() * 1000)).padStart(3, '0')}`;
-
-            let proposal = `BIOGEOMETRY ENVIRONMENTAL HOME SOLUTIONS PROPOSAL
-====================================================
-
-Quote #: ${quoteNumber}
-Date: ${today.toLocaleDateString()}
-Valid Until: ${validUntil.toLocaleDateString()}
-
-Prepared for: ${quoteData.client.name}
-Email: ${quoteData.client.email}
-${quoteData.client.phone ? `Phone: ${quoteData.client.phone}` : ''}
-
-Property: ${quoteData.property.address}
-
-----------------------------------------------------
-SELECTED SERVICE: ${tier.name.toUpperCase()} TIER
-----------------------------------------------------
-
-${tier.description}
-
-YOUR PROPERTY SPECIFICATIONS:
-- Floor area: ${quoteData.property.floorAreaSqm} m² (${Math.round(quoteData.property.floorAreaSqft).toLocaleString()} sq ft)
-- Number of floors: ${quoteData.property.numFloors}
-- Bedrooms: ${quoteData.property.numBedrooms}
-- External doors: ${quoteData.property.numExternalDoors}
-- Bedroom doors: ${quoteData.property.numBedroomDoors}
-${selectedTier !== 'intro' ? `- Interior doors: ${quoteData.property.numInteriorDoors || 0}` : ''}
-- Electrical panels: ${quoteData.property.numElectricalPanels}
-- Water supply points: ${quoteData.property.numWaterSupplyPoints}
-- Bedside outlets: ${quoteData.property.numBedsideOutlets}
-- Bedroom windows: ${quoteData.property.numBedroomWindows}
-- Bedroom mirrors: ${quoteData.property.numBedroomMirrors}
-${selectedTier === 'essential-plus' ? `- Living spaces: ${quoteData.property.numLivingSpaces || 0}
-- Living windows: ${quoteData.property.numLivingWindows || 0}
-- Living mirrors: ${quoteData.property.numLivingMirrors || 0}
-- Living outlets: ${quoteData.property.numLivingOutlets || 0}
-- TVs/Appliances: ${quoteData.property.numTVsAppliances || 0}` : ''}
-
-----------------------------------------------------
-SCOPE OF WORK
-----------------------------------------------------
-
-`;
-
-            // Add mandatory items
-            const mandatoryItems = quoteData.lineItems.filter(i => i.category === 'mandatory');
-            proposal += `INCLUDED IN ${tier.name.toUpperCase()} TIER:\n\n`;
-            mandatoryItems.forEach(item => {
-                proposal += `• ${item.quantity}x ${item.name}\n  ${item.description}\n\n`;
-            });
-
-            // Add addon items
-            const addonItems = quoteData.lineItems.filter(i => i.category === 'addon');
-            if (addonItems.length > 0) {
-                proposal += `\nSELECTED ADD-ONS:\n\n`;
-                addonItems.forEach(item => {
-                    proposal += `• ${item.quantity}x ${item.name}\n  ${item.description}\n\n`;
-                });
-            }
-
-            proposal += `----------------------------------------------------
-INVESTMENT
-----------------------------------------------------
-
-`;
-
-            quoteData.lineItems.forEach(item => {
-                const label = item.category === 'addon' ? '(Add-on) ' : '';
-                proposal += `${label}${item.name}\n  Qty: ${item.quantity} ${item.unit}     Price: TBD\n\n`;
-            });
-
-            proposal += `----------------------------------------------------
-TOTAL: Prices to be configured
-----------------------------------------------------
-
-PAYMENT TERMS:
-[To be configured]
-
-----------------------------------------------------
-ASSUMPTIONS & CLIENT RESPONSIBILITIES
-----------------------------------------------------
-
-• Client to provide clear access to all areas requiring installation
-• Property should be accessible during agreed installation times
-• This quote is based on the specifications provided above
-• Any changes to scope may affect pricing
-• Materials are included in the quoted price
-• Installation is performed by certified practitioner
-
-----------------------------------------------------
-NEXT STEPS
-----------------------------------------------------
-
-1. Review this proposal
-2. Reply to confirm acceptance
-3. Schedule installation date(s)
-4. Prepare property for installation
-
-Questions? Contact us at [your contact info]
-
-----------------------------------------------------
-
-Thank you for considering BioGeometry Environmental Home Solutions.
-
-[Your Name]
-BioGeometry Associate Practitioner
-`;
-
-            document.getElementById('proposal-text').value = proposal;
-        }
-
-        // Copy to Clipboard
-        function copyToClipboard() {
-            const textarea = document.getElementById('proposal-text');
-            textarea.select();
-            document.execCommand('copy');
-
-            const feedback = document.getElementById('copy-feedback');
-            feedback.classList.add('show');
-            setTimeout(() => feedback.classList.remove('show'), 2000);
-        }
-
-        // Start New Quote
         function startNewQuote() {
-            if (confirm('Start a new quote? Current data will be lost.')) {
+            if (confirm('Start a new quote? Unsaved changes will be lost.')) {
                 location.reload();
             }
         }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set default date to today
-            document.getElementById('projectDate').valueAsDate = new Date();
-            updateProgress();
-        });
     </script>
 </body>
 </html>
